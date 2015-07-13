@@ -129,6 +129,7 @@ public class UpdateSite {
     public UpdateSite(String id, String url) {
         this.id = id;
         this.url = url;
+        this.neverUpdate=true;
     }
 
     /**

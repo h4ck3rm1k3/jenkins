@@ -53,6 +53,7 @@ import org.kohsuke.stapler.StaplerRequest;
     }
 
     private boolean useBrowser = false;
+    private boolean isDisabled = true;
     
     public DownloadSettings() {
         load();
@@ -67,6 +68,9 @@ import org.kohsuke.stapler.StaplerRequest;
         return useBrowser;
     }
 
+    public boolean isDisabled() {
+        return isDisabled;
+    }
     public void setUseBrowser(boolean useBrowser) {
         this.useBrowser = useBrowser;
         save();
@@ -102,6 +106,9 @@ import org.kohsuke.stapler.StaplerRequest;
         }
 
         @Override protected void execute(TaskListener listener) throws IOException, InterruptedException {
+            if (get().isDisabled()) {
+                return;
+            }
             if (get().isUseBrowser()) {
                 return;
             }
